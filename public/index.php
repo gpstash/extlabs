@@ -13,6 +13,8 @@ set_include_path(implode(PATH_SEPARATOR, array(
     get_include_path(),
 )));
 
+date_default_timezone_set('Asia/Jakarta');
+
 /** Zend_Application */
 require_once 'Zend/Application.php';
 require_once 'Zend/Registry.php';
@@ -21,8 +23,8 @@ require_once 'Zend/Config/Ini.php';
 $default_conf = new Zend_Config_Ini(APPLICATION_PATH . '/configs/application.ini',APPLICATION_ENV, array('allowModifications' => true));
 
 if (file_exists(APPLICATION_PATH . '/configs/local.ini')) {
-    $local_config = new Zend_Config_Ini(APPLICATION_PATH . '/configs/local.ini',APPLICATION_ENV);
-    $default_conf->merge($local_config);
+	$local_config = new Zend_Config_Ini(APPLICATION_PATH . '/configs/local.ini',APPLICATION_ENV);
+	$default_conf->merge($local_config);
 }
 
 // Create application, bootstrap, and run

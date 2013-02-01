@@ -1,6 +1,6 @@
 Ext.application({
 	name 			   	: 'MyIndo',
-	appFolder			: 'itmg',
+	appFolder			: 'MyIndo',
 	controllers			: ['Dashboard'],
 	autoCreateViewport 	: true
 });
