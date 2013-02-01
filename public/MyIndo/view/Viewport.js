@@ -11,7 +11,8 @@ Ext.define('MyIndo.view.Viewport', {
 				xtype: 'box',
 				region: 'north',
 				id: 'header',
-				html: '<h1>ExtJS LABS</h1>',
+				html: '<div style="float:right"><img src="/image/header1.jpg"/></div><br clear="all"/>',
+				height: 124,
 				padding: '5 5 5 5'
 			},{
 				region: 'west',
