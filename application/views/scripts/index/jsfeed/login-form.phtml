@@ -1,0 +1,81 @@
+<script type="text/javascript">
+
+        var submit_url   = '<?php echo $this->url(array('module'=>'users','controller'=>'user','action'=>'login'),null,true)?>';
+        var login_title  = 'ITM Application - Login';
+        var landing_page = '<?php echo $this->url(array('module'=>'dashboard','controller'=>'index','action'=>'index'),null,true)?>';
+        var login_form;
+        Ext.require([
+             //'Ext.form.*',
+             //'Ext.layout.container.Column',
+             //'Ext.tab.Panel'
+             '*'
+         ]);
+        
+        Ext.onReady(function() {
+        	Ext.QuickTips.init();
+        	/*
+             * ================  Login Form  =======================
+             */
+        	login_form = Ext.widget({
+        		xtype: 'form',
+                layout: 'form',
+                collapsible: false,
+                id: 'loginForm',
+                url: submit_url,
+                frame: true,
+                title: login_title,
+                bodyPadding: '5 5 0',
+                width: 300,
+                fieldDefaults: {
+                    msgTarget: 'side',
+                    labelWidth: 75
+                },
+                defaultType: 'textfield',
+                items: [{
+                    fieldLabel: 'Username',
+                    name: 'username',
+                    allowBlank: false
+                },{
+                    fieldLabel: 'Password',
+                    name: 'password',
+                    inputType: 'password',
+                    allowBlank: false
+                }],
+
+                buttons: [{
+                    text: 'Login',
+                    handler: function() {
+                        if(this.up('form').getForm().isValid()) {
+                        	this.up('form').getForm().submit({
+                                method: 'POST',
+                                waitTitle: 'Connecting..',
+                                waitMsg: 'Authenticating..',
+                                
+                                success:function(){ 
+                                    Ext.Msg.alert('Status', 'Login Successful!', function(btn, text){
+                				    if (btn == 'ok'){
+                				        window.location = landing_page;
+                				        }
+                			        });
+                                },
+
+                                failure:function(form, action){ 
+                                    if(action.failureType == 'server'){
+                                        obj = Ext.JSON.decode(action.response.responseText); 
+                                        Ext.Msg.alert('Login Failed !', obj.errors.reason); 
+                                    }else{ 
+                                        Ext.Msg.alert('Warning!', 'Authentication server is unreachable : ' + action.response.responseText); 
+                                    } 
+                                    console.log(login_form.getForm().reset());
+                                }
+                                
+                            });
+                        }
+                    }
+                }]
+        	});
+        	login_form.render(document.getElementById('login-panel'));
+        	Ext.get('loginForm').center();
+        });
+        
+        </script>
