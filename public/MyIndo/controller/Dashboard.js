@@ -2,11 +2,12 @@ Ext.define('MyIndo.controller.Dashboard', {
 	extend: 'Ext.app.Controller',
 	
 	init: function() {
+
 		var me = this;
 		Ext.QuickTips.init();
 		this.control({
 			'#west-panel': {
-				render: me.onPanelRendered
+				//render: me.onPanelRendered
 			}
 		});
 		
@@ -15,7 +16,7 @@ Ext.define('MyIndo.controller.Dashboard', {
 			activeItems: [],
 			count: 0,
 			defaultMinHeightValue: 62,
-			baseUrl: 'http://itmg.labs',
+			baseUrl: 'http://itmg.local',
 			tbar: []
 		});
 		

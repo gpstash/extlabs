@@ -11,9 +11,15 @@ Ext.define('MyIndo.view.Viewport', {
 				xtype: 'box',
 				region: 'north',
 				id: 'header',
-				html: '<div style="float:right"><img src="/image/header1.jpg"/></div><br clear="all"/>',
+				cls : 'headerbg',
+				html: '<div class="logo"><img src="/image/logo.png" /></div><div class="adminNav">'+
+					'<ul>'+
+						'<li>Welcome, Administrator | </li>'+
+						'<li><a href="#"><img src="image/logout.png"/> Logout</a></li>'+
+					'</ul>'+
+					'</div>',
 				height: 124,
-				padding: '5 5 5 5'
+				padding: '0 0 5 5'
 			},{
 				region: 'west',
 				id: 'west-panel',
